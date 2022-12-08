@@ -1,4 +1,4 @@
 package com.example.manzaralar
 
-class Manzara {
+data class Manzara(var baslik:String , var aciklama:String , var resim:Int) {
 }
