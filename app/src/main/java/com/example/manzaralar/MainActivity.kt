@@ -2,14 +2,24 @@ package com.example.manzaralar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var tumManzararalar = ArrayList<Manzara>()
+    var tumManzaralar = ArrayList<Manzara>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        veriKaynaginiDoldur()
+
+        var myAdapter = ManzaraAdapter(tumManzaralar)
+        rvManzara.adapter = myAdapter
+
+        var linearLayoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        rvManzara.layoutManager = linearLayoutManager
     }
 
 
@@ -48,9 +58,9 @@ class MainActivity : AppCompatActivity() {
 
             var eklenecekManzara = Manzara("Manzara " + i, "Açıklama " + i, tumResimler[i])
 
-            tumManzararalar.add(eklenecekManzara)
+            tumManzaralar.add(eklenecekManzara)
 
         }
-        return tumManzararalar
+        return tumManzaralar
     }
 }
