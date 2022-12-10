@@ -3,6 +3,7 @@ package com.example.manzaralar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -27,9 +28,14 @@ class ManzaraAdapter(tumManzaralar:ArrayList<Manzara>): RecyclerView.Adapter<Man
 
     override fun onBindViewHolder(holder: ManzaraViewHolder, position: Int) {
 
-        holder?.manzaraBaslik?.text = manzaralar.get(position).baslik
+        var oanOlusturulanManzara = manzaralar.get(position)
+        holder?.setData(oanOlusturulanManzara,position)
+
+        /*holder?.manzaraBaslik?.text = manzaralar.get(position).baslik
         holder?.manzaraAciklama?.text = manzaralar.get(position).aciklama
         holder?.manzaraResim?.setImageResource(manzaralar.get(position).resim)
+
+         */
     }
 
     override fun getItemCount(): Int {
@@ -41,11 +47,31 @@ class ManzaraAdapter(tumManzaralar:ArrayList<Manzara>): RecyclerView.Adapter<Man
 
     class ManzaraViewHolder(itemView: View) : ViewHolder(itemView) {
 
+        fun setData(oankiManzara:Manzara,position: Int) {
+
+            manzaraBaslik.text = oankiManzara.baslik
+            manzaraAciklama.text = oankiManzara.aciklama
+            manzaraResim.setImageResource(oankiManzara.resim)
+
+            btnKopyala.setOnClickListener{
+
+            }
+            btnSil.setOnClickListener{
+
+            }
+
+
+        }
+
         var tekSatir = itemView as CardView
 
-        var manzaraBaslik=tekSatir.tvManzaraBaslik
+        var manzaraBaslik=tekSatir.tvManzaraBaslik as TextView
         var manzaraAciklama=tekSatir.tvManzaraAciklama
         var manzaraResim=tekSatir.imgManzara
+        var btnKopyala = tekSatir.imgCopy
+        var btnSil = tekSatir.imgDel
+
+
 
     }
 
