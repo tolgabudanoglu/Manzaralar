@@ -2,7 +2,11 @@ package com.example.manzaralar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +24,45 @@ class MainActivity : AppCompatActivity() {
 
         var linearLayoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rvManzara.layoutManager = linearLayoutManager
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.anamenu,menu)
+
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var id= item?.itemId
+
+        when(id){
+            R.id.LinearViewHorizontal -> {
+                var LinearViewHorizontal = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+                rvManzara.layoutManager = LinearViewHorizontal
+
+            }
+            R.id.LinearViewVertical ->{
+                var LinearViewVertical = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+                rvManzara.layoutManager = LinearViewVertical
+
+            }
+            R.id.menuGrid -> {
+                var menuGrid = GridLayoutManager(this,2)
+                rvManzara.layoutManager = menuGrid
+            }
+            R.id.StaggeredHorizontal ->{
+                var StaggeredHorizontal = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL)
+                rvManzara.layoutManager = StaggeredHorizontal
+            }
+            R.id.StaggeredVertical ->{
+                var StaggeredVertical = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+                rvManzara.layoutManager = StaggeredVertical
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

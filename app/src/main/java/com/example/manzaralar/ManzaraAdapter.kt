@@ -45,7 +45,7 @@ class ManzaraAdapter(tumManzaralar:ArrayList<Manzara>): RecyclerView.Adapter<Man
     }
 
 
-    class ManzaraViewHolder(itemView: View) : ViewHolder(itemView) {
+    inner class ManzaraViewHolder(itemView: View) : ViewHolder(itemView) {
 
         fun setData(oankiManzara:Manzara,position: Int) {
 
@@ -55,8 +55,16 @@ class ManzaraAdapter(tumManzaralar:ArrayList<Manzara>): RecyclerView.Adapter<Man
 
             btnKopyala.setOnClickListener{
 
+                manzaralar.add(position,oankiManzara)
+                notifyItemInserted(position)
+                notifyItemRangeChanged(position,manzaralar.size)
+
             }
             btnSil.setOnClickListener{
+
+                manzaralar.removeAt(position)
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position,manzaralar.size)
 
             }
 
